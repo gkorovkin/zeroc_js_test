@@ -10,7 +10,6 @@
 	"author": "",
 	"license": "ISC",
 	"dependencies": {
-		"ice": "3.6.3",
-		"slice2js": "3.6.3"
+		"ice": "3.6.3"
 	}
 }
