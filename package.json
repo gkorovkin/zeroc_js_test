@@ -1,0 +1,16 @@
+{
+	"name": "zeroc_js_test",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node zeroc_js_test.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"ice": "3.6.3",
+		"slice2js": "3.6.3"
+	}
+}
