@@ -9,9 +9,24 @@ Ice.Promise.try(
 		var base = ic.stringToProxy("ServiceFactory:default -p 10200");
 		return SRV.ServiceFactoryPrx.checkedCast(base).then(
 			function(factory_prx) {
-				//var cool_service = SRV.CoolServicePrx.checkedCast(factory_prx.GetCoolService());
-				var cool_service = factory_prx.GetCoolService();
-				return cool_service.ApplyValue(42);
+				return factory_prx.GetCoolService().then(
+					function(ar)
+					{
+						//we got coolservice prx - now apply value
+						return ar.ApplyValue("42").then(
+							function(res)
+							{
+								console.log("Reply:", res);
+							},
+							function(res,ex)
+							{
+								console.log(res,ex);
+							});
+					},
+					function(ar,ex)
+					{
+						console.log(ex,ar);
+					});
 			});
 	}
 ).finally(
