@@ -26,6 +26,22 @@
 
     var SRV = __M.module("SRV");
 
+    SRV.CoolResultListener = Slice.defineObject(
+        undefined,
+        Ice.Object, undefined, 1,
+        [
+            "::Ice::Object",
+            "::SRV::CoolResultListener"
+        ],
+        -1, undefined, undefined, false);
+
+    SRV.CoolResultListenerPrx = Slice.defineProxy(Ice.ObjectPrx, SRV.CoolResultListener.ice_staticId, undefined);
+
+    Slice.defineOperations(SRV.CoolResultListener, SRV.CoolResultListenerPrx,
+    {
+        "onResult": [, , , , , , [[3]], , , , ]
+    });
+
     SRV.CoolService = Slice.defineObject(
         undefined,
         Ice.Object, undefined, 1,
@@ -39,7 +55,8 @@
 
     Slice.defineOperations(SRV.CoolService, SRV.CoolServicePrx,
     {
-        "ApplyValue": [, , , , , [3], [[3]], , , , ]
+        "SetListener": [, , , , , , [["SRV.CoolResultListenerPrx"]], , , , ],
+        "ApplyValue": [, , , , , , [[3]], , , , ]
     });
 
     SRV.ServiceFactory = Slice.defineObject(

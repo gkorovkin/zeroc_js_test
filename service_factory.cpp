@@ -43,10 +43,85 @@
 namespace
 {
 
+const ::std::string __SRV__CoolResultListener__onResult_name = "onResult";
+
+const ::std::string __SRV__CoolService__SetListener_name = "SetListener";
+
 const ::std::string __SRV__CoolService__ApplyValue_name = "ApplyValue";
 
 const ::std::string __SRV__ServiceFactory__GetCoolService_name = "GetCoolService";
 
+}
+::IceProxy::Ice::Object* ::IceProxy::SRV::upCast(::IceProxy::SRV::CoolResultListener* p) { return p; }
+
+void
+::IceProxy::SRV::__read(::IceInternal::BasicStream* __is, ::IceInternal::ProxyHandle< ::IceProxy::SRV::CoolResultListener>& v)
+{
+	::Ice::ObjectPrx proxy;
+	__is->read(proxy);
+	if(!proxy)
+	{
+		v = 0;
+	}
+	else
+	{
+		v = new ::IceProxy::SRV::CoolResultListener;
+		v->__copyFrom(proxy);
+	}
+}
+
+void
+IceProxy::SRV::CoolResultListener::onResult(::Ice::Int __p_value, const ::Ice::Context* __ctx)
+{
+	::IceInternal::Outgoing __og(this, __SRV__CoolResultListener__onResult_name, ::Ice::Normal, __ctx);
+	try
+	{
+		::IceInternal::BasicStream* __os = __og.startWriteParams(::Ice::DefaultFormat);
+		__os->write(__p_value);
+		__og.endWriteParams();
+	}
+	catch(const ::Ice::LocalException& __ex)
+	{
+		__og.abort(__ex);
+	}
+	__invoke(__og);
+}
+
+::Ice::AsyncResultPtr
+IceProxy::SRV::CoolResultListener::begin_onResult(::Ice::Int __p_value, const ::Ice::Context* __ctx, const ::IceInternal::CallbackBasePtr& __del, const ::Ice::LocalObjectPtr& __cookie)
+{
+	::IceInternal::OutgoingAsyncPtr __result = new ::IceInternal::OutgoingAsync(this, __SRV__CoolResultListener__onResult_name, __del, __cookie);
+	try
+	{
+		__result->prepare(__SRV__CoolResultListener__onResult_name, ::Ice::Normal, __ctx);
+		::IceInternal::BasicStream* __os = __result->startWriteParams(::Ice::DefaultFormat);
+		__os->write(__p_value);
+		__result->endWriteParams();
+		__result->invoke();
+	}
+	catch(const ::Ice::Exception& __ex)
+	{
+		__result->abort(__ex);
+	}
+	return __result;
+}
+
+void
+IceProxy::SRV::CoolResultListener::end_onResult(const ::Ice::AsyncResultPtr& __result)
+{
+	__end(__result, __SRV__CoolResultListener__onResult_name);
+}
+
+const ::std::string&
+IceProxy::SRV::CoolResultListener::ice_staticId()
+{
+	return ::SRV::CoolResultListener::ice_staticId();
+}
+
+::IceProxy::Ice::Object*
+IceProxy::SRV::CoolResultListener::__newInstance() const
+{
+	return new CoolResultListener;
 }
 ::IceProxy::Ice::Object* ::IceProxy::SRV::upCast(::IceProxy::SRV::CoolService* p) { return p; }
 
@@ -66,10 +141,51 @@ void
 	}
 }
 
-::Ice::Int
+void
+IceProxy::SRV::CoolService::SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context* __ctx)
+{
+	::IceInternal::Outgoing __og(this, __SRV__CoolService__SetListener_name, ::Ice::Normal, __ctx);
+	try
+	{
+		::IceInternal::BasicStream* __os = __og.startWriteParams(::Ice::DefaultFormat);
+		__os->write(__p_listener);
+		__og.endWriteParams();
+	}
+	catch(const ::Ice::LocalException& __ex)
+	{
+		__og.abort(__ex);
+	}
+	__invoke(__og);
+}
+
+::Ice::AsyncResultPtr
+IceProxy::SRV::CoolService::begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context* __ctx, const ::IceInternal::CallbackBasePtr& __del, const ::Ice::LocalObjectPtr& __cookie)
+{
+	::IceInternal::OutgoingAsyncPtr __result = new ::IceInternal::OutgoingAsync(this, __SRV__CoolService__SetListener_name, __del, __cookie);
+	try
+	{
+		__result->prepare(__SRV__CoolService__SetListener_name, ::Ice::Normal, __ctx);
+		::IceInternal::BasicStream* __os = __result->startWriteParams(::Ice::DefaultFormat);
+		__os->write(__p_listener);
+		__result->endWriteParams();
+		__result->invoke();
+	}
+	catch(const ::Ice::Exception& __ex)
+	{
+		__result->abort(__ex);
+	}
+	return __result;
+}
+
+void
+IceProxy::SRV::CoolService::end_SetListener(const ::Ice::AsyncResultPtr& __result)
+{
+	__end(__result, __SRV__CoolService__SetListener_name);
+}
+
+void
 IceProxy::SRV::CoolService::ApplyValue(::Ice::Int __p_value, const ::Ice::Context* __ctx)
 {
-	__checkTwowayOnly(__SRV__CoolService__ApplyValue_name);
 	::IceInternal::Outgoing __og(this, __SRV__CoolService__ApplyValue_name, ::Ice::Normal, __ctx);
 	try
 	{
@@ -81,29 +197,12 @@ IceProxy::SRV::CoolService::ApplyValue(::Ice::Int __p_value, const ::Ice::Contex
 	{
 		__og.abort(__ex);
 	}
-	if(!__og.invoke())
-	{
-		try
-		{
-			__og.throwUserException();
-		}
-		catch(const ::Ice::UserException& __ex)
-		{
-			::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
-			throw __uue;
-		}
-	}
-	::Ice::Int __ret;
-	::IceInternal::BasicStream* __is = __og.startReadParams();
-	__is->read(__ret);
-	__og.endReadParams();
-	return __ret;
+	__invoke(__og);
 }
 
 ::Ice::AsyncResultPtr
 IceProxy::SRV::CoolService::begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context* __ctx, const ::IceInternal::CallbackBasePtr& __del, const ::Ice::LocalObjectPtr& __cookie)
 {
-	__checkAsyncTwowayOnly(__SRV__CoolService__ApplyValue_name);
 	::IceInternal::OutgoingAsyncPtr __result = new ::IceInternal::OutgoingAsync(this, __SRV__CoolService__ApplyValue_name, __del, __cookie);
 	try
 	{
@@ -120,69 +219,10 @@ IceProxy::SRV::CoolService::begin_ApplyValue(::Ice::Int __p_value, const ::Ice::
 	return __result;
 }
 
-#ifdef ICE_CPP11
-
-::Ice::AsyncResultPtr
-IceProxy::SRV::CoolService::__begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context* __ctx, const ::IceInternal::Function<void (::Ice::Int)>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception, const ::IceInternal::Function<void (bool)>& __sent)
-{
-	class Cpp11CB : public ::IceInternal::Cpp11FnCallbackNC
-	{
-	public:
-
-		Cpp11CB(const ::std::function<void (::Ice::Int)>& responseFunc, const ::std::function<void (const ::Ice::Exception&)>& exceptionFunc, const ::std::function<void (bool)>& sentFunc) :
-			::IceInternal::Cpp11FnCallbackNC(exceptionFunc, sentFunc),
-			_response(responseFunc)
-		{
-			CallbackBase::checkCallback(true, responseFunc || exceptionFunc != nullptr);
-		}
-
-		virtual void completed(const ::Ice::AsyncResultPtr& __result) const
-		{
-			::SRV::CoolServicePrx __proxy = ::SRV::CoolServicePrx::uncheckedCast(__result->getProxy());
-			::Ice::Int __ret;
-			try
-			{
-				__ret = __proxy->end_ApplyValue(__result);
-			}
-			catch(const ::Ice::Exception& ex)
-			{
-				Cpp11FnCallbackNC::exception(__result, ex);
-				return;
-			}
-			if(_response != nullptr)
-			{
-				_response(__ret);
-			}
-		}
-
-	private:
-
-		::std::function<void (::Ice::Int)> _response;
-	};
-	return begin_ApplyValue(__p_value, __ctx, new Cpp11CB(__response, __exception, __sent));
-}
-#endif
-
-::Ice::Int
+void
 IceProxy::SRV::CoolService::end_ApplyValue(const ::Ice::AsyncResultPtr& __result)
 {
-	::Ice::AsyncResult::__check(__result, this, __SRV__CoolService__ApplyValue_name);
-	::Ice::Int __ret;
-	if(!__result->__wait())
-	{
-		try
-		{
-			__result->__throwUserException();
-		}
-		catch(const ::Ice::UserException& __ex)
-		{
-			throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
-		}
-	}
-	::IceInternal::BasicStream* __is = __result->__startReadParams();
-	__is->read(__ret);
-	__result->__endReadParams();
-	return __ret;
+	__end(__result, __SRV__CoolService__ApplyValue_name);
 }
 
 const ::std::string&
@@ -334,6 +374,134 @@ IceProxy::SRV::ServiceFactory::__newInstance() const
 	return new ServiceFactory;
 }
 
+::Ice::Object* SRV::upCast(::SRV::CoolResultListener* p) { return p; }
+
+namespace
+{
+const ::std::string __SRV__CoolResultListener_ids[2] =
+{
+	"::Ice::Object",
+	"::SRV::CoolResultListener"
+};
+
+}
+
+bool
+SRV::CoolResultListener::ice_isA(const ::std::string& _s, const ::Ice::Current&) const
+{
+	return ::std::binary_search(__SRV__CoolResultListener_ids, __SRV__CoolResultListener_ids + 2, _s);
+}
+
+::std::vector< ::std::string>
+SRV::CoolResultListener::ice_ids(const ::Ice::Current&) const
+{
+	return ::std::vector< ::std::string>(&__SRV__CoolResultListener_ids[0], &__SRV__CoolResultListener_ids[2]);
+}
+
+const ::std::string&
+SRV::CoolResultListener::ice_id(const ::Ice::Current&) const
+{
+	return __SRV__CoolResultListener_ids[1];
+}
+
+const ::std::string&
+SRV::CoolResultListener::ice_staticId()
+{
+#ifdef ICE_HAS_THREAD_SAFE_LOCAL_STATIC
+	static const ::std::string typeId = "::SRV::CoolResultListener";
+	return typeId;
+#else
+	return __SRV__CoolResultListener_ids[1];
+#endif
+}
+
+::Ice::DispatchStatus
+SRV::CoolResultListener::___onResult(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
+{
+	__checkMode(::Ice::Normal, __current.mode);
+	::IceInternal::BasicStream* __is = __inS.startReadParams();
+	::Ice::Int __p_value;
+	__is->read(__p_value);
+	__inS.endReadParams();
+	onResult(__p_value, __current);
+	__inS.__writeEmptyParams();
+	return ::Ice::DispatchOK;
+}
+
+namespace
+{
+const ::std::string __SRV__CoolResultListener_all[] =
+{
+	"ice_id",
+	"ice_ids",
+	"ice_isA",
+	"ice_ping",
+	"onResult"
+};
+
+}
+
+::Ice::DispatchStatus
+SRV::CoolResultListener::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
+{
+	::std::pair< const ::std::string*, const ::std::string*> r = ::std::equal_range(__SRV__CoolResultListener_all, __SRV__CoolResultListener_all + 5, current.operation);
+	if(r.first == r.second)
+	{
+		throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
+	}
+
+	switch(r.first - __SRV__CoolResultListener_all)
+	{
+		case 0:
+		{
+			return ___ice_id(in, current);
+		}
+		case 1:
+		{
+			return ___ice_ids(in, current);
+		}
+		case 2:
+		{
+			return ___ice_isA(in, current);
+		}
+		case 3:
+		{
+			return ___ice_ping(in, current);
+		}
+		case 4:
+		{
+			return ___onResult(in, current);
+		}
+	}
+
+	assert(false);
+	throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
+}
+
+void
+SRV::CoolResultListener::__writeImpl(::IceInternal::BasicStream* __os) const
+{
+	__os->startWriteSlice(ice_staticId(), -1, true);
+	__os->endWriteSlice();
+}
+
+void
+SRV::CoolResultListener::__readImpl(::IceInternal::BasicStream* __is)
+{
+	__is->startReadSlice();
+	__is->endReadSlice();
+}
+
+void
+SRV::__patch(CoolResultListenerPtr& handle, const ::Ice::ObjectPtr& v)
+{
+	handle = ::SRV::CoolResultListenerPtr::dynamicCast(v);
+	if(v && !handle)
+	{
+		IceInternal::Ex::throwUOE(::SRV::CoolResultListener::ice_staticId(), v);
+	}
+}
+
 ::Ice::Object* SRV::upCast(::SRV::CoolService* p) { return p; }
 
 namespace
@@ -376,6 +544,19 @@ SRV::CoolService::ice_staticId()
 }
 
 ::Ice::DispatchStatus
+SRV::CoolService::___SetListener(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
+{
+	__checkMode(::Ice::Normal, __current.mode);
+	::IceInternal::BasicStream* __is = __inS.startReadParams();
+	::SRV::CoolResultListenerPrx __p_listener;
+	__is->read(__p_listener);
+	__inS.endReadParams();
+	SetListener(__p_listener, __current);
+	__inS.__writeEmptyParams();
+	return ::Ice::DispatchOK;
+}
+
+::Ice::DispatchStatus
 SRV::CoolService::___ApplyValue(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
 	__checkMode(::Ice::Normal, __current.mode);
@@ -383,10 +564,8 @@ SRV::CoolService::___ApplyValue(::IceInternal::Incoming& __inS, const ::Ice::Cur
 	::Ice::Int __p_value;
 	__is->read(__p_value);
 	__inS.endReadParams();
-	::Ice::Int __ret = ApplyValue(__p_value, __current);
-	::IceInternal::BasicStream* __os = __inS.__startWriteParams(::Ice::DefaultFormat);
-	__os->write(__ret);
-	__inS.__endWriteParams(true);
+	ApplyValue(__p_value, __current);
+	__inS.__writeEmptyParams();
 	return ::Ice::DispatchOK;
 }
 
@@ -395,6 +574,7 @@ namespace
 const ::std::string __SRV__CoolService_all[] =
 {
 	"ApplyValue",
+	"SetListener",
 	"ice_id",
 	"ice_ids",
 	"ice_isA",
@@ -406,7 +586,7 @@ const ::std::string __SRV__CoolService_all[] =
 ::Ice::DispatchStatus
 SRV::CoolService::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
-	::std::pair< const ::std::string*, const ::std::string*> r = ::std::equal_range(__SRV__CoolService_all, __SRV__CoolService_all + 5, current.operation);
+	::std::pair< const ::std::string*, const ::std::string*> r = ::std::equal_range(__SRV__CoolService_all, __SRV__CoolService_all + 6, current.operation);
 	if(r.first == r.second)
 	{
 		throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
@@ -420,17 +600,21 @@ SRV::CoolService::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& 
 		}
 		case 1:
 		{
-			return ___ice_id(in, current);
+			return ___SetListener(in, current);
 		}
 		case 2:
 		{
-			return ___ice_ids(in, current);
+			return ___ice_id(in, current);
 		}
 		case 3:
 		{
-			return ___ice_isA(in, current);
+			return ___ice_ids(in, current);
 		}
 		case 4:
+		{
+			return ___ice_isA(in, current);
+		}
+		case 5:
 		{
 			return ___ice_ping(in, current);
 		}

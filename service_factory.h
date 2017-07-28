@@ -54,6 +54,10 @@ namespace IceProxy
 namespace SRV
 {
 
+class CoolResultListener;
+void __read(::IceInternal::BasicStream*, ::IceInternal::ProxyHandle< ::IceProxy::SRV::CoolResultListener>&);
+::IceProxy::Ice::Object* upCast(::IceProxy::SRV::CoolResultListener*);
+
 class CoolService;
 void __read(::IceInternal::BasicStream*, ::IceInternal::ProxyHandle< ::IceProxy::SRV::CoolService>&);
 ::IceProxy::Ice::Object* upCast(::IceProxy::SRV::CoolService*);
@@ -68,6 +72,12 @@ void __read(::IceInternal::BasicStream*, ::IceInternal::ProxyHandle< ::IceProxy:
 
 namespace SRV
 {
+
+class CoolResultListener;
+::Ice::Object* upCast(::SRV::CoolResultListener*);
+typedef ::IceInternal::Handle< ::SRV::CoolResultListener> CoolResultListenerPtr;
+typedef ::IceInternal::ProxyHandle< ::IceProxy::SRV::CoolResultListener> CoolResultListenerPrx;
+void __patch(CoolResultListenerPtr&, const ::Ice::ObjectPtr&);
 
 class CoolService;
 ::Ice::Object* upCast(::SRV::CoolService*);
@@ -86,6 +96,12 @@ void __patch(ServiceFactoryPtr&, const ::Ice::ObjectPtr&);
 namespace SRV
 {
 
+class Callback_CoolResultListener_onResult_Base : virtual public ::IceInternal::CallbackBase { };
+typedef ::IceUtil::Handle< Callback_CoolResultListener_onResult_Base> Callback_CoolResultListener_onResultPtr;
+
+class Callback_CoolService_SetListener_Base : virtual public ::IceInternal::CallbackBase { };
+typedef ::IceUtil::Handle< Callback_CoolService_SetListener_Base> Callback_CoolService_SetListenerPtr;
+
 class Callback_CoolService_ApplyValue_Base : virtual public ::IceInternal::CallbackBase { };
 typedef ::IceUtil::Handle< Callback_CoolService_ApplyValue_Base> Callback_CoolService_ApplyValuePtr;
 
@@ -100,23 +116,278 @@ namespace IceProxy
 namespace SRV
 {
 
+class CoolResultListener : virtual public ::IceProxy::Ice::Object
+{
+public:
+
+    void onResult(::Ice::Int __p_value)
+    {
+        onResult(__p_value, 0);
+    }
+    void onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx)
+    {
+        onResult(__p_value, &__ctx);
+    }
+#ifdef ICE_CPP11
+    ::Ice::AsyncResultPtr
+    begin_onResult(::Ice::Int __p_value, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    {
+        return begin_onResult(__p_value, 0, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent));
+    }
+    ::Ice::AsyncResultPtr
+    begin_onResult(::Ice::Int __p_value, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
+    {
+        return begin_onResult(__p_value, 0, ::Ice::newCallback(__completed, __sent), 0);
+    }
+    ::Ice::AsyncResultPtr
+    begin_onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    {
+        return begin_onResult(__p_value, &__ctx, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent), 0);
+    }
+    ::Ice::AsyncResultPtr
+    begin_onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
+    {
+        return begin_onResult(__p_value, &__ctx, ::Ice::newCallback(__completed, __sent));
+    }
+#endif
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value)
+    {
+        return begin_onResult(__p_value, 0, ::IceInternal::__dummyCallback, 0);
+    }
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx)
+    {
+        return begin_onResult(__p_value, &__ctx, ::IceInternal::__dummyCallback, 0);
+    }
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value, const ::Ice::CallbackPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_onResult(__p_value, 0, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::Ice::CallbackPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_onResult(__p_value, &__ctx, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value, const ::SRV::Callback_CoolResultListener_onResultPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_onResult(__p_value, 0, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::SRV::Callback_CoolResultListener_onResultPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_onResult(__p_value, &__ctx, __del, __cookie);
+    }
+
+    void end_onResult(const ::Ice::AsyncResultPtr&);
+    
+private:
+
+    void onResult(::Ice::Int, const ::Ice::Context*);
+    ::Ice::AsyncResultPtr begin_onResult(::Ice::Int, const ::Ice::Context*, const ::IceInternal::CallbackBasePtr&, const ::Ice::LocalObjectPtr& __cookie = 0);
+    
+public:
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_context(const ::Ice::Context& __context) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_context(__context).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_adapterId(const ::std::string& __id) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_adapterId(__id).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_endpoints(const ::Ice::EndpointSeq& __endpoints) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_endpoints(__endpoints).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_locatorCacheTimeout(int __timeout) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_locatorCacheTimeout(__timeout).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_connectionCached(bool __cached) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_connectionCached(__cached).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_endpointSelection(::Ice::EndpointSelectionType __est) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_endpointSelection(__est).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_secure(bool __secure) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_secure(__secure).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_preferSecure(bool __preferSecure) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_preferSecure(__preferSecure).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_router(const ::Ice::RouterPrx& __router) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_router(__router).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_locator(const ::Ice::LocatorPrx& __locator) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_locator(__locator).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_collocationOptimized(bool __co) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_collocationOptimized(__co).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_invocationTimeout(int __timeout) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_invocationTimeout(__timeout).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_twoway() const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_twoway().get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_oneway() const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_oneway().get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_batchOneway() const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_batchOneway().get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_datagram() const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_datagram().get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_batchDatagram() const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_batchDatagram().get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_compress(bool __compress) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_compress(__compress).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_timeout(int __timeout) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_timeout(__timeout).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_connectionId(const ::std::string& __id) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_connectionId(__id).get());
+    }
+    
+    ::IceInternal::ProxyHandle<CoolResultListener> ice_encodingVersion(const ::Ice::EncodingVersion& __v) const
+    {
+        return dynamic_cast<CoolResultListener*>(::IceProxy::Ice::Object::ice_encodingVersion(__v).get());
+    }
+    
+    static const ::std::string& ice_staticId();
+
+private: 
+    virtual ::IceProxy::Ice::Object* __newInstance() const;
+};
+
 class CoolService : virtual public ::IceProxy::Ice::Object
 {
 public:
 
-    ::Ice::Int ApplyValue(::Ice::Int __p_value)
+    void SetListener(const ::SRV::CoolResultListenerPrx& __p_listener)
     {
-        return ApplyValue(__p_value, 0);
+        SetListener(__p_listener, 0);
     }
-    ::Ice::Int ApplyValue(::Ice::Int __p_value, const ::Ice::Context& __ctx)
+    void SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx)
     {
-        return ApplyValue(__p_value, &__ctx);
+        SetListener(__p_listener, &__ctx);
     }
 #ifdef ICE_CPP11
     ::Ice::AsyncResultPtr
-    begin_ApplyValue(::Ice::Int __p_value, const ::IceInternal::Function<void (::Ice::Int)>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
     {
-        return __begin_ApplyValue(__p_value, 0, __response, __exception, __sent);
+        return begin_SetListener(__p_listener, 0, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent));
+    }
+    ::Ice::AsyncResultPtr
+    begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
+    {
+        return begin_SetListener(__p_listener, 0, ::Ice::newCallback(__completed, __sent), 0);
+    }
+    ::Ice::AsyncResultPtr
+    begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    {
+        return begin_SetListener(__p_listener, &__ctx, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent), 0);
+    }
+    ::Ice::AsyncResultPtr
+    begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
+    {
+        return begin_SetListener(__p_listener, &__ctx, ::Ice::newCallback(__completed, __sent));
+    }
+#endif
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener)
+    {
+        return begin_SetListener(__p_listener, 0, ::IceInternal::__dummyCallback, 0);
+    }
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx)
+    {
+        return begin_SetListener(__p_listener, &__ctx, ::IceInternal::__dummyCallback, 0);
+    }
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::CallbackPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_SetListener(__p_listener, 0, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx, const ::Ice::CallbackPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_SetListener(__p_listener, &__ctx, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::SRV::Callback_CoolService_SetListenerPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_SetListener(__p_listener, 0, __del, __cookie);
+    }
+
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx& __p_listener, const ::Ice::Context& __ctx, const ::SRV::Callback_CoolService_SetListenerPtr& __del, const ::Ice::LocalObjectPtr& __cookie = 0)
+    {
+        return begin_SetListener(__p_listener, &__ctx, __del, __cookie);
+    }
+
+    void end_SetListener(const ::Ice::AsyncResultPtr&);
+    
+private:
+
+    void SetListener(const ::SRV::CoolResultListenerPrx&, const ::Ice::Context*);
+    ::Ice::AsyncResultPtr begin_SetListener(const ::SRV::CoolResultListenerPrx&, const ::Ice::Context*, const ::IceInternal::CallbackBasePtr&, const ::Ice::LocalObjectPtr& __cookie = 0);
+    
+public:
+
+    void ApplyValue(::Ice::Int __p_value)
+    {
+        ApplyValue(__p_value, 0);
+    }
+    void ApplyValue(::Ice::Int __p_value, const ::Ice::Context& __ctx)
+    {
+        ApplyValue(__p_value, &__ctx);
+    }
+#ifdef ICE_CPP11
+    ::Ice::AsyncResultPtr
+    begin_ApplyValue(::Ice::Int __p_value, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    {
+        return begin_ApplyValue(__p_value, 0, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent));
     }
     ::Ice::AsyncResultPtr
     begin_ApplyValue(::Ice::Int __p_value, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
@@ -124,21 +395,15 @@ public:
         return begin_ApplyValue(__p_value, 0, ::Ice::newCallback(__completed, __sent), 0);
     }
     ::Ice::AsyncResultPtr
-    begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::IceInternal::Function<void (::Ice::Int)>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
+    begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::IceInternal::Function<void ()>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception = ::IceInternal::Function<void (const ::Ice::Exception&)>(), const ::IceInternal::Function<void (bool)>& __sent = ::IceInternal::Function<void (bool)>())
     {
-        return __begin_ApplyValue(__p_value, &__ctx, __response, __exception, __sent);
+        return begin_ApplyValue(__p_value, &__ctx, new ::IceInternal::Cpp11FnOnewayCallbackNC(__response, __exception, __sent), 0);
     }
     ::Ice::AsyncResultPtr
     begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context& __ctx, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __completed, const ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>& __sent = ::IceInternal::Function<void (const ::Ice::AsyncResultPtr&)>())
     {
         return begin_ApplyValue(__p_value, &__ctx, ::Ice::newCallback(__completed, __sent));
     }
-    
-private:
-
-    ::Ice::AsyncResultPtr __begin_ApplyValue(::Ice::Int __p_value, const ::Ice::Context* __ctx, const ::IceInternal::Function<void (::Ice::Int)>& __response, const ::IceInternal::Function<void (const ::Ice::Exception&)>& __exception, const ::IceInternal::Function<void (bool)>& __sent);
-    
-public:
 #endif
 
     ::Ice::AsyncResultPtr begin_ApplyValue(::Ice::Int __p_value)
@@ -171,11 +436,11 @@ public:
         return begin_ApplyValue(__p_value, &__ctx, __del, __cookie);
     }
 
-    ::Ice::Int end_ApplyValue(const ::Ice::AsyncResultPtr&);
+    void end_ApplyValue(const ::Ice::AsyncResultPtr&);
     
 private:
 
-    ::Ice::Int ApplyValue(::Ice::Int, const ::Ice::Context*);
+    void ApplyValue(::Ice::Int, const ::Ice::Context*);
     ::Ice::AsyncResultPtr begin_ApplyValue(::Ice::Int, const ::Ice::Context*, const ::IceInternal::CallbackBasePtr&, const ::Ice::LocalObjectPtr& __cookie = 0);
     
 public:
@@ -489,6 +754,40 @@ private:
 namespace SRV
 {
 
+class CoolResultListener : virtual public ::Ice::Object
+{
+public:
+
+    typedef CoolResultListenerPrx ProxyType;
+    typedef CoolResultListenerPtr PointerType;
+
+    virtual bool ice_isA(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) const;
+    virtual ::std::vector< ::std::string> ice_ids(const ::Ice::Current& = ::Ice::Current()) const;
+    virtual const ::std::string& ice_id(const ::Ice::Current& = ::Ice::Current()) const;
+    static const ::std::string& ice_staticId();
+
+    virtual void onResult(::Ice::Int, const ::Ice::Current& = ::Ice::Current()) = 0;
+    ::Ice::DispatchStatus ___onResult(::IceInternal::Incoming&, const ::Ice::Current&);
+
+    virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
+
+protected:
+    virtual void __writeImpl(::IceInternal::BasicStream*) const;
+    virtual void __readImpl(::IceInternal::BasicStream*);
+    using ::Ice::Object::__writeImpl;
+    using ::Ice::Object::__readImpl;
+};
+
+inline bool operator==(const CoolResultListener& l, const CoolResultListener& r)
+{
+    return static_cast<const ::Ice::Object&>(l) == static_cast<const ::Ice::Object&>(r);
+}
+
+inline bool operator<(const CoolResultListener& l, const CoolResultListener& r)
+{
+    return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
+}
+
 class CoolService : virtual public ::Ice::Object
 {
 public:
@@ -501,7 +800,10 @@ public:
     virtual const ::std::string& ice_id(const ::Ice::Current& = ::Ice::Current()) const;
     static const ::std::string& ice_staticId();
 
-    virtual ::Ice::Int ApplyValue(::Ice::Int, const ::Ice::Current& = ::Ice::Current()) = 0;
+    virtual void SetListener(const ::SRV::CoolResultListenerPrx&, const ::Ice::Current& = ::Ice::Current()) = 0;
+    ::Ice::DispatchStatus ___SetListener(::IceInternal::Incoming&, const ::Ice::Current&);
+
+    virtual void ApplyValue(::Ice::Int, const ::Ice::Current& = ::Ice::Current()) = 0;
     ::Ice::DispatchStatus ___ApplyValue(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
@@ -563,7 +865,7 @@ namespace SRV
 {
 
 template<class T>
-class CallbackNC_CoolService_ApplyValue : public Callback_CoolService_ApplyValue_Base, public ::IceInternal::TwowayCallbackNC<T>
+class CallbackNC_CoolResultListener_onResult : public Callback_CoolResultListener_onResult_Base, public ::IceInternal::OnewayCallbackNC<T>
 {
 public:
 
@@ -571,51 +873,40 @@ public:
 
     typedef void (T::*Exception)(const ::Ice::Exception&);
     typedef void (T::*Sent)(bool);
-    typedef void (T::*Response)(::Ice::Int);
+    typedef void (T::*Response)();
 
-    CallbackNC_CoolService_ApplyValue(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
-        : ::IceInternal::TwowayCallbackNC<T>(obj, cb != 0, excb, sentcb), _response(cb)
+    CallbackNC_CoolResultListener_onResult(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
+        : ::IceInternal::OnewayCallbackNC<T>(obj, cb, excb, sentcb)
     {
     }
-
-    virtual void completed(const ::Ice::AsyncResultPtr& __result) const
-    {
-        ::SRV::CoolServicePrx __proxy = ::SRV::CoolServicePrx::uncheckedCast(__result->getProxy());
-        ::Ice::Int __ret;
-        try
-        {
-            __ret = __proxy->end_ApplyValue(__result);
-        }
-        catch(const ::Ice::Exception& ex)
-        {
-            ::IceInternal::CallbackNC<T>::exception(__result, ex);
-            return;
-        }
-        if(_response)
-        {
-            (::IceInternal::CallbackNC<T>::_callback.get()->*_response)(__ret);
-        }
-    }
-
-    private:
-
-    Response _response;
 };
 
-template<class T> Callback_CoolService_ApplyValuePtr
-newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*cb)(::Ice::Int), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+template<class T> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(const IceUtil::Handle<T>& instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
 {
-    return new CallbackNC_CoolService_ApplyValue<T>(instance, cb, excb, sentcb);
+    return new CallbackNC_CoolResultListener_onResult<T>(instance, cb, excb, sentcb);
 }
 
-template<class T> Callback_CoolService_ApplyValuePtr
-newCallback_CoolService_ApplyValue(T* instance, void (T::*cb)(::Ice::Int), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+template<class T> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
 {
-    return new CallbackNC_CoolService_ApplyValue<T>(instance, cb, excb, sentcb);
+    return new CallbackNC_CoolResultListener_onResult<T>(instance, 0, excb, sentcb);
+}
+
+template<class T> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(T* instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolResultListener_onResult<T>(instance, cb, excb, sentcb);
+}
+
+template<class T> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(T* instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolResultListener_onResult<T>(instance, 0, excb, sentcb);
 }
 
 template<class T, typename CT>
-class Callback_CoolService_ApplyValue : public Callback_CoolService_ApplyValue_Base, public ::IceInternal::TwowayCallback<T, CT>
+class Callback_CoolResultListener_onResult : public Callback_CoolResultListener_onResult_Base, public ::IceInternal::OnewayCallback<T, CT>
 {
 public:
 
@@ -623,47 +914,200 @@ public:
 
     typedef void (T::*Exception)(const ::Ice::Exception& , const CT&);
     typedef void (T::*Sent)(bool , const CT&);
-    typedef void (T::*Response)(::Ice::Int, const CT&);
+    typedef void (T::*Response)(const CT&);
+
+    Callback_CoolResultListener_onResult(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
+        : ::IceInternal::OnewayCallback<T, CT>(obj, cb, excb, sentcb)
+    {
+    }
+};
+
+template<class T, typename CT> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(const IceUtil::Handle<T>& instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolResultListener_onResult<T, CT>(instance, cb, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolResultListener_onResult<T, CT>(instance, 0, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(T* instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolResultListener_onResult<T, CT>(instance, cb, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolResultListener_onResultPtr
+newCallback_CoolResultListener_onResult(T* instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolResultListener_onResult<T, CT>(instance, 0, excb, sentcb);
+}
+
+template<class T>
+class CallbackNC_CoolService_SetListener : public Callback_CoolService_SetListener_Base, public ::IceInternal::OnewayCallbackNC<T>
+{
+public:
+
+    typedef IceUtil::Handle<T> TPtr;
+
+    typedef void (T::*Exception)(const ::Ice::Exception&);
+    typedef void (T::*Sent)(bool);
+    typedef void (T::*Response)();
+
+    CallbackNC_CoolService_SetListener(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
+        : ::IceInternal::OnewayCallbackNC<T>(obj, cb, excb, sentcb)
+    {
+    }
+};
+
+template<class T> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(const IceUtil::Handle<T>& instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_SetListener<T>(instance, cb, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_SetListener<T>(instance, 0, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(T* instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_SetListener<T>(instance, cb, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(T* instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_SetListener<T>(instance, 0, excb, sentcb);
+}
+
+template<class T, typename CT>
+class Callback_CoolService_SetListener : public Callback_CoolService_SetListener_Base, public ::IceInternal::OnewayCallback<T, CT>
+{
+public:
+
+    typedef IceUtil::Handle<T> TPtr;
+
+    typedef void (T::*Exception)(const ::Ice::Exception& , const CT&);
+    typedef void (T::*Sent)(bool , const CT&);
+    typedef void (T::*Response)(const CT&);
+
+    Callback_CoolService_SetListener(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
+        : ::IceInternal::OnewayCallback<T, CT>(obj, cb, excb, sentcb)
+    {
+    }
+};
+
+template<class T, typename CT> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(const IceUtil::Handle<T>& instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_SetListener<T, CT>(instance, cb, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_SetListener<T, CT>(instance, 0, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(T* instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_SetListener<T, CT>(instance, cb, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolService_SetListenerPtr
+newCallback_CoolService_SetListener(T* instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_SetListener<T, CT>(instance, 0, excb, sentcb);
+}
+
+template<class T>
+class CallbackNC_CoolService_ApplyValue : public Callback_CoolService_ApplyValue_Base, public ::IceInternal::OnewayCallbackNC<T>
+{
+public:
+
+    typedef IceUtil::Handle<T> TPtr;
+
+    typedef void (T::*Exception)(const ::Ice::Exception&);
+    typedef void (T::*Sent)(bool);
+    typedef void (T::*Response)();
+
+    CallbackNC_CoolService_ApplyValue(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
+        : ::IceInternal::OnewayCallbackNC<T>(obj, cb, excb, sentcb)
+    {
+    }
+};
+
+template<class T> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_ApplyValue<T>(instance, cb, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_ApplyValue<T>(instance, 0, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(T* instance, void (T::*cb)(), void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_ApplyValue<T>(instance, cb, excb, sentcb);
+}
+
+template<class T> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(T* instance, void (T::*excb)(const ::Ice::Exception&), void (T::*sentcb)(bool) = 0)
+{
+    return new CallbackNC_CoolService_ApplyValue<T>(instance, 0, excb, sentcb);
+}
+
+template<class T, typename CT>
+class Callback_CoolService_ApplyValue : public Callback_CoolService_ApplyValue_Base, public ::IceInternal::OnewayCallback<T, CT>
+{
+public:
+
+    typedef IceUtil::Handle<T> TPtr;
+
+    typedef void (T::*Exception)(const ::Ice::Exception& , const CT&);
+    typedef void (T::*Sent)(bool , const CT&);
+    typedef void (T::*Response)(const CT&);
 
     Callback_CoolService_ApplyValue(const TPtr& obj, Response cb, Exception excb, Sent sentcb)
-        : ::IceInternal::TwowayCallback<T, CT>(obj, cb != 0, excb, sentcb), _response(cb)
+        : ::IceInternal::OnewayCallback<T, CT>(obj, cb, excb, sentcb)
     {
     }
-
-    virtual void completed(const ::Ice::AsyncResultPtr& __result) const
-    {
-        ::SRV::CoolServicePrx __proxy = ::SRV::CoolServicePrx::uncheckedCast(__result->getProxy());
-        ::Ice::Int __ret;
-        try
-        {
-            __ret = __proxy->end_ApplyValue(__result);
-        }
-        catch(const ::Ice::Exception& ex)
-        {
-            ::IceInternal::Callback<T, CT>::exception(__result, ex);
-            return;
-        }
-        if(_response)
-        {
-            (::IceInternal::Callback<T, CT>::_callback.get()->*_response)(__ret, CT::dynamicCast(__result->getCookie()));
-        }
-    }
-
-    private:
-
-    Response _response;
 };
 
 template<class T, typename CT> Callback_CoolService_ApplyValuePtr
-newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*cb)(::Ice::Int, const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
 {
     return new Callback_CoolService_ApplyValue<T, CT>(instance, cb, excb, sentcb);
 }
 
 template<class T, typename CT> Callback_CoolService_ApplyValuePtr
-newCallback_CoolService_ApplyValue(T* instance, void (T::*cb)(::Ice::Int, const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+newCallback_CoolService_ApplyValue(const IceUtil::Handle<T>& instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_ApplyValue<T, CT>(instance, 0, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(T* instance, void (T::*cb)(const CT&), void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
 {
     return new Callback_CoolService_ApplyValue<T, CT>(instance, cb, excb, sentcb);
+}
+
+template<class T, typename CT> Callback_CoolService_ApplyValuePtr
+newCallback_CoolService_ApplyValue(T* instance, void (T::*excb)(const ::Ice::Exception&, const CT&), void (T::*sentcb)(bool, const CT&) = 0)
+{
+    return new Callback_CoolService_ApplyValue<T, CT>(instance, 0, excb, sentcb);
 }
 
 template<class T>

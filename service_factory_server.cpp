@@ -1,4 +1,6 @@
 #include <Ice/Ice.h>
+#include <thread>
+#include <chrono>
 #include "service_factory.h"
 
 Ice::CommunicatorPtr ic;
@@ -8,11 +10,25 @@ Ice::ObjectAdapterPtr adapter;
 class CoolServiceI : public SRV::CoolService
 {
 public:
-	Ice::Int ApplyValue(Ice::Int value, const Ice::Current& = Ice::Current()) override
+	void SetListener(const SRV::CoolResultListenerPrx& listener, const Ice::Current& = Ice::Current()) override
 	{
-		std::cout << "Returning cool service value : " << (value + 42) << std::endl;
-		return value + 42;
+		std::cout << "Setting listener" << std::endl;
+		m_listener = listener;
+	};
+	void ApplyValue(Ice::Int value, const Ice::Current& = Ice::Current()) override
+	{
+		std::cout << "Running for some calculation" << std::endl;
+		std::thread([this]
+					{
+						std::this_thread::sleep_for( std::chrono::duration<int, std::milli>(2000) );
+						if (m_listener)
+							m_listener->onResult(42);
+						else
+							std::cerr << "No listener applied!" << std::endl;
+					});
 	}
+
+	SRV::CoolResultListenerPrx m_listener;
 };
 ////////////////////////////////////////////////////////////////////////////////
 class ServiceFactoryI : public SRV::ServiceFactory

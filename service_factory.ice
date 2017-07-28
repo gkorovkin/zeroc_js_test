@@ -3,10 +3,15 @@
 
 module SRV
 {
+	interface CoolResultListener
+	{
+		void onResult(int value);
+	};
 
 	interface CoolService
 	{
-		int ApplyValue(int value);
+		void SetListener(CoolResultListener* listener);
+		void ApplyValue(int value);
 	};
 
 	interface ServiceFactory

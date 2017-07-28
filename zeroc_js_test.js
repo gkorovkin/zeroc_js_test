@@ -3,30 +3,39 @@ const SRV = require("./service_factory.js").SRV;
 
 var ic = Ice.initialize(process.argv);
 
+//listeners
+var CoolResultListenerI = Ice.Class(SRV.CoolResultListener, {
+	onResult : function(value,current)
+	{
+		console.log("Calculated:", value);
+	}
+});
+
 Ice.Promise.try(
 	function()
 	{
 		var base = ic.stringToProxy("ServiceFactory:default -p 10200");
 		return SRV.ServiceFactoryPrx.checkedCast(base).then(
-			function(factory_prx) {
+			function(factory_prx)
+			{
 				return factory_prx.GetCoolService().then(
-					function(ar)
+					function(service_prx)
 					{
-						//we got coolservice prx - now apply value
-						return ar.ApplyValue("42").then(
-							function(res)
+						return ic.createObjectAdapter("").then(
+							function(adapter)
 							{
-								console.log("Reply:", res);
-							},
-							function(res,ex)
-							{
-								console.log(res,ex);
+								var r = adapter.addWithUUID(new CoolResultListenerI());
+								factory_prx.ice_getCachedConnection().setAdapter(adapter);
+								console.log(r);
+								return SRV.CoolResultListenerPrx.checkedCast(r).then(
+									function(listener_prx)
+									{
+										service_prx.SetListener(listener_prx);
+										service_prx.ApplyValue(42);
+									});
 							});
-					},
-					function(ar,ex)
-					{
-						console.log(ex,ar);
 					});
+
 			});
 	}
 ).finally(
@@ -41,3 +50,5 @@ Ice.Promise.try(
 		console.log(ex.toString());
 	}
 );
+
+ic.waitForShutdown();
